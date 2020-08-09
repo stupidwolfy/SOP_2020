@@ -6,7 +6,7 @@ Service Oriented Programming 2020
 | ------------ | -------- | -------------------- | -------------------- |
 | XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
 | XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
-| Sirawit Bosri | 61070220 | Project Manager | xxxxxxxxxxxxxxxxxxxx |
+| Sirawit Bosri | 61070220 | Project Manager | Oversee all aspects of projects |
 | XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
 | Arnon Unthon | 61070268 | Full Stack Developer | Work with front and back ends|
 
