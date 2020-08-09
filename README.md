@@ -2,13 +2,13 @@
 Service Oriented Programming 2020
 ## ASSIGNMENT WEEK 1
 **Roles Play** :clipboard:
-| Name         | ID       | Role                 |
-| ------------ | -------- | -------------------- |
-| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
-| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
-| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
-| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
-| Arnon Unthon | 61070268 | Full Stack Developer |
+| Name         | ID       | Role                 | Role info            |
+| ------------ | -------- | -------------------- | -------------------- |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| Arnon Unthon | 61070268 | Full Stack Developer | Work with front and back ends|
 
 **Product and Features**  :bulb:
 * Product Name : 
