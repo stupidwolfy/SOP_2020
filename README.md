@@ -10,6 +10,8 @@ Service Oriented Programming 2020
 | XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
 | Arnon Unthon | 61070268 | Full Stack Developer | Work with front and back ends|
 
+**More details..**
+
 **Product and Features**  :bulb:
 * Product Name : 
 * Features :
