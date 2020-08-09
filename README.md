@@ -1,12 +1,14 @@
 # SOP_2020
 Service Oriented Programming 2020
 ## ASSIGNMENT WEEK 1
-**Roles Play**
-* คนที่ 1 :
-* คนที่ 2 :
-* คนที่ 3 :
-* คนที่ 4 :
-* คนที่ 5 :
+**Roles Play** :clipboard:
+| Name         | ID       | Role                 |
+| ------------ | -------- | -------------------- |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
+| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx |
+| Arnon Unthon | 61070268 | Full Stack Developer |
 
 **Product and Features**.
 * Product Name : 
