@@ -8,7 +8,7 @@ Service Oriented Programming 2020
 | Sirawit Bosri | 61070220 | Project Manager | Oversee all aspects of projects |
 | Arnon Unthon | 61070268 | Full Stack Developer | Work with front and back ends |
 | Nirawit Naktham | 61070343 | Back-end developer | responsible for server-side application logic as well as the integration of the front-end part. |
-| XXXXXXXXXXXX | 61070xxx | xxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| Angwara Paolakleam | 61070351 | Front-end developer |  responsible for implementing visual elements that users see and interact within a web application. |
 
 **More details..**
 
