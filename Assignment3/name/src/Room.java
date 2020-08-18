@@ -1,21 +1,26 @@
 import java.util.ArrayList;
 
 public class Room {
-    private ArrayList<UserData> Userpool;
+    private ArrayList<UserData> userPool = new ArrayList<>();
     private int roomLimit = 20;
+    private String rname;
 
-    public void enter(UserData user){
-        if (Userpool.size() < roomLimit){
-            Userpool.add(user);
-        }
-        else{
-            System.out.println("This room is full.");
+    public Room(String rname) {
+        this.rname = rname;
+    }
+
+    public void enter(UserData user) {
+        if (userPool.size() < roomLimit) {
+            userPool.add(user);
+            System.out.println("Entered " + rname + " .");
+        } else {
+            System.out.println(rname + " is full.");
         }
     }
 
-    public void exit(UserData user){
-        Userpool.remove(user);
+    public void exit(UserData user) {
+        userPool.remove(user);
+        System.out.println("Exited " + rname + " .");
     }
 
-        
 }

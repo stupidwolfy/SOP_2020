@@ -21,7 +21,7 @@ public class Main {
 
     Scanner keyboard = new Scanner(System.in);
     UserData userData = UserData.getInstance();
-    Room Library = new Room();
+    Room Library = new Room("library");
 
     System.out.print("Enter name:");
     userData.setName(keyboard.nextLine());
@@ -31,6 +31,24 @@ public class Main {
 
     int year = 2020 - userData.getDob();
     System.out.println("Your Age is: " + year);
+
+    boolean keeploop = true;
+    while (keeploop) {
+      System.out.print("1-Enter 2-Exit 3-cancel: ");
+      switch (keyboard.nextLine()) {
+        case "1":
+          Library.enter(userData);
+          break;
+        case "2":
+          Library.exit(userData);
+          break;
+        default:
+          keeploop = false;
+          break;
+      }
+    }
+
+    keyboard.close();
 
   }
 }
