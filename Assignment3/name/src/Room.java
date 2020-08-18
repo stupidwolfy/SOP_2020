@@ -10,6 +10,10 @@ public class Room {
         this.room_name = room_name;
     }
 
+    public Room() {
+        this.room_name = "room1";
+    }
+
     public void enter(UserData user) {
         if (userPool.size() < room_limit) {
             if (!userPool.contains(user)) {

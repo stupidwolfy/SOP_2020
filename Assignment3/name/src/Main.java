@@ -16,6 +16,7 @@ public class Main {
 
     Scanner keyboard = new Scanner(System.in);
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    UserData userData = UserData.getInstance();
     Room library;
 
     try {
@@ -24,8 +25,6 @@ public class Main {
     } catch (FileNotFoundException ex) {
       library = new Room("library");
     }
-
-    UserData userData = UserData.getInstance();
 
     System.out.print("Enter name:");
     userData.setName(keyboard.nextLine());
@@ -46,7 +45,7 @@ public class Main {
         case "2":
           library.exit(userData);
           break;
-        default:
+        case "3":
           keeploop = false;
           break;
       }
