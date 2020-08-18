@@ -2,7 +2,10 @@
 // https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.6/gson-2.8.6.jar
 
 //import java.sql.Connection;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.util.*;
 import com.google.gson.Gson;
@@ -12,9 +15,17 @@ public class Main {
   public static void main(String args[]) {
 
     Scanner keyboard = new Scanner(System.in);
-    UserData userData = UserData.getInstance();
-    Room library = new Room("library");
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Room library;
+
+    try {
+      Reader reader = new FileReader("libdata.json");
+      library = gson.fromJson(reader, Room.class);
+    } catch (FileNotFoundException ex) {
+      library = new Room("library");
+    }
+
+    UserData userData = UserData.getInstance();
 
     System.out.print("Enter name:");
     userData.setName(keyboard.nextLine());
@@ -39,16 +50,16 @@ public class Main {
           keeploop = false;
           break;
       }
-      try{
+      try {
         Writer writer = new FileWriter("libdata.json");
         gson.toJson(library, writer);
 
-        writer.flush(); //flush data to file
-        writer.close(); //close write
-      }
-      catch (Exception ex){
+        writer.flush(); // flush data to file
+        writer.close(); // close write
+      } catch (Exception ex) {
         ex.printStackTrace();
       }
+
     }
     keyboard.close();
 

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Room {
     private String room_name;
-    private int room_limit = 20;
+    private int room_limit = 6;
     private ArrayList<UserData> userPool = new ArrayList<>();
 
     public Room(String room_name) {
@@ -30,5 +30,4 @@ public class Room {
             System.out.println("You aren't in " + room_name + " !!");
         }
     }
-
 }
