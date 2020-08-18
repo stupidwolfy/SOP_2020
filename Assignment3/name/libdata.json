@@ -1,0 +1,10 @@
+{
+  "room_name": "library",
+  "room_limit": 20,
+  "userPool": [
+    {
+      "Name": "joe",
+      "dob": 2000
+    }
+  ]
+}

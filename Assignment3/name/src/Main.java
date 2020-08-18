@@ -1,27 +1,20 @@
+// Download gson
+// https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.6/gson-2.8.6.jar
 
 //import java.sql.Connection;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Main {
   public static void main(String args[]) {
-    // // Do something...
-
-    // // Create the ConnectionPool:
-    // JDBCConnectionPool pool = new JDBCConnectionPool(
-    // "org.hsqldb.jdbcDriver", "jdbc:hsqldb://localhost/mydb",
-    // "sa", "secret");
-
-    // // Get a connection:
-    // Connection con = pool.checkOut();
-
-    // // Use the connection
-
-    // // Return the connection:
-    // pool.checkIn(con);
 
     Scanner keyboard = new Scanner(System.in);
     UserData userData = UserData.getInstance();
-    Room Library = new Room("library");
+    Room library = new Room("library");
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     System.out.print("Enter name:");
     userData.setName(keyboard.nextLine());
@@ -37,17 +30,26 @@ public class Main {
       System.out.print("1-Enter 2-Exit 3-cancel: ");
       switch (keyboard.nextLine()) {
         case "1":
-          Library.enter(userData);
+          library.enter(userData);
           break;
         case "2":
-          Library.exit(userData);
+          library.exit(userData);
           break;
         default:
           keeploop = false;
           break;
       }
-    }
+      try{
+        Writer writer = new FileWriter("libdata.json");
+        gson.toJson(library, writer);
 
+        writer.flush(); //flush data to file
+        writer.close(); //close write
+      }
+      catch (Exception ex){
+        ex.printStackTrace();
+      }
+    }
     keyboard.close();
 
   }
