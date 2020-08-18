@@ -35,4 +35,15 @@ public class Room {
             System.out.println("You aren't in " + room_name + " !!");
         }
     }
+
+    public void look(){
+        System.out.print("Room capacity: "+ userPool.size() + "/" + room_limit + ". ");
+        if (userPool.size() < room_limit) {
+            System.out.println("This room is not full yet.");
+        }
+        else{
+            System.out.println("This room is full.");
+        }
+        
+    }
 }

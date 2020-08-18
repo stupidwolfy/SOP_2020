@@ -37,7 +37,7 @@ public class Main {
 
     boolean keeploop = true;
     while (keeploop) {
-      System.out.print("1-Enter 2-Exit 3-cancel: ");
+      System.out.print("|1|Enter|-|2|Exit|-|3|look|-|4|cancel|: ");
       switch (keyboard.nextLine()) {
         case "1":
           library.enter(userData);
@@ -46,6 +46,9 @@ public class Main {
           library.exit(userData);
           break;
         case "3":
+          library.look();
+          break;
+        case "4":
           keeploop = false;
           break;
       }
