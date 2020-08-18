@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     private String room_name;
     private int room_limit = 6;
-    private ArrayList<UserData> userPool = new ArrayList<>();
+    private List<UserData> userPool = new ArrayList<>();
 
     public Room(String room_name) {
         this.room_name = room_name;

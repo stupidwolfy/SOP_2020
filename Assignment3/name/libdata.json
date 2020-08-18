@@ -1,14 +1,5 @@
 {
   "room_name": "library",
   "room_limit": 6,
-  "userPool": [
-    {
-      "Name": "ada",
-      "dob": 2000
-    },
-    {
-      "Name": "ada",
-      "dob": 2000
-    }
-  ]
+  "userPool": []
 }

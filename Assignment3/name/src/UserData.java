@@ -31,5 +31,19 @@ public class UserData {
         this.dob = dob;
     }
 
+    @Override
+    public boolean equals (Object otherObject){
+        if(!(otherObject instanceof UserData)){
+            return false;
+        }
+        if(!((UserData)otherObject).getName().equals(this.Name)){
+            return false;
+        }
+        if(((UserData)otherObject).getDob() != this.dob){
+            return false;
+        }
+        return true;
+    }
+
     
 }
