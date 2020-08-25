@@ -1,0 +1,26 @@
+{
+  "room_name": "library",
+  "room_limit": 6,
+  "userPool": [
+    {
+      "Name": "Joe",
+      "dob": 2000
+    },
+    {
+      "Name": "aon",
+      "dob": 2000
+    },
+    {
+      "Name": "fah",
+      "dob": 2000
+    },
+    {
+      "Name": "fouth",
+      "dob": 1999
+    },
+    {
+      "Name": "Nirawit",
+      "dob": 2000
+    }
+  ]
+}
