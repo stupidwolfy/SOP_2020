@@ -7,6 +7,7 @@ public class UserData extends prototype{
 
     private String Name;
     private int dob;
+    private String status;
 
     public UserData() {
 
@@ -27,6 +28,19 @@ public class UserData extends prototype{
 
     public void setDob(int dob) {
         this.dob = dob;
+    }
+    
+    public void sit(String target){
+        this.status = target;
+    }
+    
+    public String unsit(){
+        if(status.equals("chair")){
+            String temp = status;
+            status = "";
+            return temp;
+        }
+        return "not found";
     }
 
     @Override

@@ -3,24 +3,18 @@
   "room_limit": 6,
   "userPool": [
     {
-      "Name": "Joe",
-      "dob": 2000
+      "Name": "jojo",
+      "dob": 1919,
+      "status": "chair"
     },
     {
-      "Name": "aon",
-      "dob": 2000
-    },
-    {
-      "Name": "fah",
-      "dob": 2000
-    },
-    {
-      "Name": "fouth",
-      "dob": 1999
-    },
-    {
-      "Name": "Nirawit",
-      "dob": 2000
+      "Name": "john",
+      "dob": 2000,
+      "status": "chair"
     }
+  ],
+  "chairPool": [
+    "chair",
+    "chair"
   ]
 }

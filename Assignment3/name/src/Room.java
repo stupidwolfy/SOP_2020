@@ -5,13 +5,14 @@ public class Room {
     private String room_name;
     private int room_limit = 6;
     private List<UserData> userPool = new ArrayList<>();
+    private List<String> chairPool = new ArrayList<>();
 
     public Room(String room_name) {
         this.room_name = room_name;
     }
 
     public Room() {
-        this.room_name = "room1";
+        this("room1");
     }
 
     public void enter(UserData user) {
