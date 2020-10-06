@@ -1,0 +1,1082 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a Taxi API. Group null",
+    "version": "1.0.2",
+    "title": "Simple Taxi API",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/SOP_2020/Taxi/1.0.2",
+  "tags": [
+    {
+      "name": "Customer",
+      "description": "User who need taxi"
+    },
+    {
+      "name": "Driver",
+      "description": "User who work as taxi driver"
+    },
+    {
+      "name": "Feedback",
+      "description": "For got feedback"
+    },
+    {
+      "name": "Location",
+      "description": "For get locatoin"
+    },
+    {
+      "name": "Message",
+      "description": "For handle chat"
+    },
+    {
+      "name": "Payment",
+      "description": "For handle payment history"
+    },
+    {
+      "name": "Tracking",
+      "description": "For update location"
+    },
+    {
+      "name": "Vehicle",
+      "description": "For provide available vehicle"
+    },
+    {
+      "name": "Promotion",
+      "description": "For handle promotion"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/payment": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Customer make payment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "payment",
+            "description": "Payment info to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment completed"
+          },
+          "400": {
+            "description": "Bad input parameter. payment cancelled"
+          }
+        }
+      }
+    },
+    "/payment/{customer_id}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Get customer peyment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "description": "ID of customer",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      }
+    },
+    "/tracking/{tracking_id}": {
+      "get": {
+        "tags": [
+          "Tracking"
+        ],
+        "summary": "Find Tracking ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tracking_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Find successful",
+            "schema": {
+              "$ref": "#/definitions/Tracking"
+            }
+          },
+          "400": {
+            "description": "Invalid tracking"
+          }
+        }
+      }
+    },
+    "/tracking": {
+      "post": {
+        "tags": [
+          "Tracking"
+        ],
+        "summary": "Tracking now",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "trackingData",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "tracking": {
+                  "$ref": "#/definitions/Tracking"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Tracking",
+            "schema": {
+              "$ref": "#/definitions/Tracking"
+            }
+          },
+          "400": {
+            "description": "Invalid tracking ID"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/vehicle": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Get all vehicle avaliable",
+        "description": "Return list of all vehicle in db",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Vehicle"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Driver make vehicle",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "vehicle",
+            "description": "Vehicle info to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Add car information completed"
+          },
+          "400": {
+            "description": "Bad input parameter."
+          }
+        }
+      }
+    },
+    "/vehicle/{vehicle_id}": {
+      "get": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Find car ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle detail",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Update vehicle information",
+        "description": "Update vehicle information",
+        "parameters": [
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "description": "The vehicle ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update information",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "400": {
+            "description": "Can't update informations"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vehicle"
+        ],
+        "summary": "Delete car ID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "description": "ID Vehicle",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete vehicle successful",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/message/{message_id}": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "summary": "Message",
+        "description": "Message",
+        "parameters": [
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Customer",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "summary": "Send Message",
+        "description": "Send Message",
+        "parameters": [
+          {
+            "name": "message_id",
+            "in": "path",
+            "description": "Customer",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Send Message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          }
+        }
+      }
+    },
+    "/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location",
+        "description": "search location matching current info",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/location/start": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Start",
+        "description": "Start",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "location",
+            "description": "Location add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Location"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/location/end": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "End",
+        "description": "End",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "location",
+            "description": "Locationadd",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Location"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/customer": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Get current customer info",
+        "description": "Return current customer info",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Search results matching customer",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Customer"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Register customer",
+        "description": "Add customer to db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "customer",
+            "description": "Customer to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Customer account created"
+          },
+          "400": {
+            "description": "Invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/customer/{customer_id}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Find Customer ID.",
+        "description": "Find Customer ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "400": {
+            "description": "customer not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Update Customer",
+        "description": "Update Customer",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "description": "The user ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update information",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "400": {
+            "description": "Can't update informations"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "Delete user account",
+        "description": "Delete user account",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "description": "The user ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete information"
+          },
+          "400": {
+            "description": "Please try again"
+          }
+        }
+      }
+    },
+    "/feedback": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Get specific feedback info",
+        "description": "Return feedback matched id",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Results matching feedback",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feedback"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Adds an feedback item",
+        "description": "Adds an feedback to the system",
+        "operationId": "addfeedback",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "feedback",
+            "description": "Feedback to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Feedback"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Feedback created"
+          },
+          "400": {
+            "description": "Invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/promotion": {
+      "get": {
+        "tags": [
+          "Promotion"
+        ],
+        "summary": "get available promotion",
+        "description": "return available promotion",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "all available promotion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Promotion"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Promotion"
+        ],
+        "summary": "Add Promotion",
+        "description": "Add Promotion to the system",
+        "operationId": "Add Promotion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Promotion",
+            "description": "Promotion to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Promotion"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Promotion created"
+          },
+          "400": {
+            "description": "Invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/driver": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "summary": "get driver info",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "search for driver info",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Driver"
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Driver"
+        ],
+        "summary": "register driver",
+        "description": "add driver to db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "driver",
+            "description": "Driver to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Driver"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "driver account created"
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/driver/{driver_id}": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "summary": "Find driver ID",
+        "description": "Return driver detail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "driver_id",
+            "in": "path",
+            "description": "Pass a driver",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results matching criteria",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Driver"
+              }
+            }
+          },
+          "400": {
+            "description": "Can't find a driver"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Driver"
+        ],
+        "summary": "Update driver information",
+        "description": "Update driver information",
+        "parameters": [
+          {
+            "name": "driver_id",
+            "in": "path",
+            "description": "The driver ID",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update information",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "400": {
+            "description": "Can't update informations"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Driver": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "plate_number"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "krittanai Pahonkarn"
+        },
+        "plate_number": {
+          "type": "string",
+          "example": "121-กกก"
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "required": [
+        "Customer",
+        "Date",
+        "Price",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Sirawit Bosri"
+        },
+        "Date": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2016-08-29T09:12:33.001Z"
+        },
+        "Price": {
+          "type": "number",
+          "format": "int64",
+          "example": 100
+        },
+        "Customer": {
+          "$ref": "#/definitions/Customer"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "required": [
+        "id",
+        "location",
+        "name",
+        "wallet"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Somchai wongsawang"
+        },
+        "wallet": {
+          "$ref": "#/definitions/Payment"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "KMITL"
+        }
+      }
+    },
+    "Promotion": {
+      "type": "object",
+      "required": [
+        "description",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "integer",
+          "example": 50
+        },
+        "description": {
+          "type": "string",
+          "example": "รับส่วนลดทันทีสำหรับผู้ใช้ใหม"
+        }
+      }
+    },
+    "Vehicle": {
+      "type": "object",
+      "required": [
+        "driver",
+        "id",
+        "name",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Mazda3"
+        },
+        "type": {
+          "type": "string",
+          "example": "Sedan"
+        },
+        "driver": {
+          "$ref": "#/definitions/Driver"
+        }
+      }
+    },
+    "Tracking": {
+      "type": "object",
+      "required": [
+        "gps",
+        "id",
+        "vehicle"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gps": {
+          "type": "string",
+          "example": "เอกมัย"
+        },
+        "vehicle": {
+          "$ref": "#/definitions/Vehicle"
+        }
+      }
+    },
+    "Feedback": {
+      "type": "object",
+      "required": [
+        "customer",
+        "driver",
+        "id",
+        "point"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "point": {
+          "type": "number",
+          "example": 15.4
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "driver": {
+          "$ref": "#/definitions/Driver"
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "required": [
+        "id",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "message": {
+          "type": "string",
+          "example": "กำลังไปครับ"
+        },
+        "driver": {
+          "$ref": "#/definitions/Driver"
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        }
+      }
+    }
+  }
+}
