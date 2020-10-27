@@ -71,28 +71,51 @@
             </p>
         </div>
     </section>
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <h2>View Status</h2>
-            <p>Client1: </p>
-            <p class="client1">Status</p>
-            <p>Client2: </p>
-            <p class="client2">Status</p>
-            <p>Client3: </p>
-            <p class="client3">Status</p>
-            <p>Client4: </p>
-            <p class="client4">Status</p>
-            <p>Client5: </p>
-            <p class="client5">Status</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">NAME</th>
+                <th scope="col">STATUS</th>
 
-        </div>
-    </div>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Client1</td>
+                <td class="client1"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Client2</td>
+                <td class="client2"></td>
+
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Client3</td>
+                <td class="client3"></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Client4</td>
+                <td class="client4"></td>
+
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Client5</td>
+                <td class="client5"></td>
+
+            </tr>
+        </tbody>
+    </table>
 
     <script>
         let is1up, is2up, is3up, is4up, is5up;
 
-        $('.btn').click(function() {
-
+        function refreshClient() {
             $('.text').text('loading . . .');
 
             $.getJSON(
@@ -102,12 +125,12 @@
                     $('.text').text("You had " + client_pool.length + " Client");
                     //console.log(JSON.stringify(data));
                     //console.log(data.applications);
+                    is1up = false;
+                    is2up = false;
+                    is3up = false;
+                    is4up = false;
+                    is5up = false;
                     client_pool.forEach(client => {
-                        is1up = false;
-                        is2up = false;
-                        is3up = false;
-                        is4up = false;
-                        is5up = false;
                         switch (client.name) {
                             case "SERVICE1":
                                 is1up = true;
@@ -125,17 +148,24 @@
                                 is5up = true;
                                 break;
                         }
-                        $('.client1').text(is1up ? "UP :)" : "Down :(");
-                        $('.client2').text(is2up ? "UP :)" : "Down :(");
-                        $('.client3').text(is3up ? "UP :)" : "Down :(");
-                        $('.client4').text(is4up ? "UP :)" : "Down :(");
-                        $('.client5').text(is5up ? "UP :)" : "Down :(");
-
                     });
+                    $('.client1').text(is1up ? "UP :)" : "Down :(");
+                    $('.client2').text(is2up ? "UP :)" : "Down :(");
+                    $('.client3').text(is3up ? "UP :)" : "Down :(");
+                    $('.client4').text(is4up ? "UP :)" : "Down :(");
+                    $('.client5').text(is5up ? "UP :)" : "Down :(");
+
                 }
+
             );
 
-        });
+        }
+
+        setInterval(function() {
+            refreshClient();
+        }, 5000);
+
+        $('.btn').click(refreshClient());
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
