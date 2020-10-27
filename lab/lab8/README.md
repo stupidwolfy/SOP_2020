@@ -4,7 +4,7 @@
 - Group_Name : NULL
 
 **Picture**
-![GitHub Logo](/Index_screenshot.png)
+![Screen](Index_screenshot.png)
 
 **Run Program**
 
