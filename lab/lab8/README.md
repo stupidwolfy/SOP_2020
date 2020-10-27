@@ -1,7 +1,7 @@
 # Assignment - Monitoring dashboard with Netflix Eureka
 
-Subject : SERVICE-ORIENTED PROGRAMMING 2020
-Group-Name : NULL
+- Subject : SERVICE-ORIENTED PROGRAMMING 2020
+- Group_Name : NULL
 
 **Picture**
 ![GitHub Logo](/images/logo.png)
