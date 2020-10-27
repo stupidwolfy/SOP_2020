@@ -13,6 +13,10 @@
 - Run eureka_client1 - eureka_client5
 - Open index.html
 
+**Extension google chrome**
+
+- install https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc?catego...&hl=th
+
 **Member**
 
 - 61070003 Krittanai Pahonkan
