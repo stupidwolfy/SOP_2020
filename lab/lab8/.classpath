@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="eureka_client1/eureka_client2/src/main/java"/>
+	<classpathentry kind="src" path="eureka_client1/eureka_client2/src/test/java"/>
+	<classpathentry kind="src" path="eureka_client1/src/main/java"/>
+	<classpathentry kind="src" path="eureka_client1/src/test/java"/>
+	<classpathentry kind="src" path="eureka_client2/src/main/java"/>
+	<classpathentry kind="src" path="eureka_client2/src/test/java"/>
+	<classpathentry kind="src" path="eureka_client3/src/main/java"/>
+	<classpathentry kind="src" path="eureka_client3/src/test/java"/>
+	<classpathentry kind="src" path="eureka/src/main/java"/>
+	<classpathentry kind="src" path="eureka/src/test/java"/>
+	<classpathentry kind="output" path="eureka/target/classes"/>
+</classpath>

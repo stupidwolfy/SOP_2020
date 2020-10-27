@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eureka</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+
+<body>
+    <H1>Hello</H1>
+
+    <button type="button" class="btn">Click me!</button>
+    <p class="text">Replace me!!</p>
+    <p>Client1: </p>
+    <p class="client1">Status</p>
+    <p>Client2: </p>
+    <p class="client2">Status</p>
+    <p>Client3: </p>
+    <p class="client3">Status</p>
+    <p>Client4: </p>
+    <p class="client4">Status</p>
+    <p>Client5: </p>
+    <p class="client5">Status</p>
+
+    <script>
+        $('.btn').click(function() {
+
+            $('.text').text('loading . . .');
+
+            $.getJSON(
+                "http://localhost:8761/eureka/apps",
+                function(data) {
+                    client_pool = data.applications.application;
+                    $('.text').text("You had " + client.length + " Client");
+                    //console.log(JSON.stringify(data));
+                    //console.log(data.applications);
+                    console.log(client[0].name);
+                    client_pool.forEach()
+
+                    if (client_pool[0].name == "SERVICE1") {
+                        $('.client1').text("Up :)");
+                    } else {
+                        $('.client1').text("Down!!");
+                    }
+                }
+            );
+
+        });
+    </script>
+</body>
+
+</html>
