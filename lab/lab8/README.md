@@ -4,7 +4,7 @@
 - Group_Name : NULL
 
 **Picture**
-![Screen](/Index_screenshot.png)
+![Screen](https://github.com/stupidwolfy/SOP_2020/blob/master/lab/lab8/Index_screenshot.PNG)
 
 **Run Program**
 
