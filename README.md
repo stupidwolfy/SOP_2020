@@ -4,7 +4,6 @@ Service Oriented Programming 2020
 **Roles Play** :clipboard:
 | Name         | ID       | Role                 | Role info            |
 | ------------ | -------- | -------------------- | -------------------- |
-
 | Sirawit Bosri | 61070220 | System Analyst | You will analyze system requirements and address any relevant problems.  |
 | Arnon Unthon | 61070268 | Full Stack Developer | Work with front and back ends |
 | Nirawit Naktham | 61070343 | Back-end developer | responsible for server-side application logic as well as the integration of the front-end part. |
