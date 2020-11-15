@@ -1,0 +1,58 @@
+#tab{
+    background-color:rgb(238,77,45);
+    height: 30px;
+}
+.logo{
+    width: 100px;
+    height:auto;
+}
+#head{
+    font-size: 20px;
+    color:rgb(238,77,45);
+}
+#search1{
+    width:400px;
+    border-color: rgb(238,77,45);
+    border-width: 2px;
+}
+#btnsearch{
+    background-color:rgb(238,77,45);
+    width:80px;
+    height: 38px;
+}
+#btnsearch1{
+    background-color:rgb(238,77,45);
+    width:120px;
+    height: 38px;
+    color: white;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 40px;
+}
+#icon1{
+    color: white;
+}
+#block1{
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+#block2{
+    margin: 40px;
+
+}
+#table1{
+    text-align: center;
+}
+
+#detail1{
+    text-align: center;
+}
+#btnsearch2{
+    background-color:rgb(238,77,45);
+    width:120px;
+    height: 38px;
+    color: white;
+    font-weight: normal;
+    font-size: 14px;
+}
