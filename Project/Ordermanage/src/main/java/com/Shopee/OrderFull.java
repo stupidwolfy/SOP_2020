@@ -4,7 +4,7 @@ public class OrderFull {
 	private int id;
 	private String name;
 	private String address;
-	private int order;
+	private Order order;
 	private String shipping;
 	private int promotion;
 	private String payment;
@@ -14,6 +14,20 @@ public class OrderFull {
 	public OrderFull(int id) {
 		super();
 		this.id = id;
+	}
+
+	public OrderFull(int id, String name, String address, Order order, String shipping, int promotion, String payment,
+			int payShipping, int totalPrice) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.order = order;
+		this.shipping = shipping;
+		this.promotion = promotion;
+		this.payment = payment;
+		this.payShipping = payShipping;
+		this.totalPrice = totalPrice;
 	}
 
 	public long getId() {
@@ -36,11 +50,11 @@ public class OrderFull {
 		this.address = address;
 	}
 
-	public int getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(int order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 
