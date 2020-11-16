@@ -9,6 +9,8 @@ public class Product {
 	private int amount;
 	private int shopID;
 	
+	public Product() {
+	}
 	public Product(int id, String name, String imageUrl, int weight, int price, int amount, int shopID) {
 		super();
 		this.id = id;

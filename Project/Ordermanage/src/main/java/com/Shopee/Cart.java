@@ -11,7 +11,10 @@ public class Cart {
 	private Date date;
 	private List<Product> product;
 	private Promotion promotion;
-	
+
+	public Cart() {
+	}
+
 	public Cart(int id, int user_id, Date date, List<Product> product, Promotion promotion) {
 		super();
 		this.id = id;
@@ -20,13 +23,13 @@ public class Cart {
 		this.product = product;
 		this.promotion = promotion;
 	}
-	
+
 	public Cart(int id) {
 		super();
 		this.id = id;
 		this.product = new ArrayList<Product>();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -46,7 +49,7 @@ public class Cart {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public void setDatenow() {
 		this.date = new Date();
 	}
@@ -58,12 +61,12 @@ public class Cart {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
-	
+
 	public void addProduct(Product product) {
 		this.product.add(product);
 	}
-	
-	public void addProduct(Product ...args) {
+
+	public void addProduct(Product... args) {
 		this.product.addAll(Arrays.asList(args));
 	}
 
@@ -74,6 +77,5 @@ public class Cart {
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
-
 
 }
