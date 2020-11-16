@@ -11,15 +11,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiController {
 
 	@GetMapping(value = "/order/{orderid}", produces = "application/json")
-	public Order OrderApiGet(@PathVariable int orderid) {
+	public Cart OrderApiGet(@PathVariable int id) {
 		
 		//Dummy data
-		Order order = new Order(5);
-		order.addShop("shop01");
+		//Order order = new Order(5);
+		//order.addShop("shop01");
 
 		// model.addAttribute("hello",hello);
 		// model.addAttribute("person",person);
-		return order;
+		Product product1 = new Product(12, "Spoon", "https://www.google.com/spoon", 30, 150, 5, 5);
+		Product product2 = new Product(14, "Table", "https://www.google.com/table", 200, 2, 2, 7);
+		Promotion promo1 = new Promotion(5);
+		Promotion promo2 = new Promotion(2);
+		
+		Cart cart = new Cart(id);
+		cart.setUser_id(1234);
+		cart.setDatenow();
+		cart.addProduct(product1, product2);
+		cart.addPromotion(promo1,promo2);
+		
+		return cart;
 	}
 
 	@PostMapping(value = "/order/{orderid}", consumes = "application/json", produces = "application/json")
