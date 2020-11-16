@@ -1,5 +1,6 @@
 package com.Shopee;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Cart {
 	public Cart(int id) {
 		super();
 		this.id = id;
+		this.product = new ArrayList<Product>();
 	}
 	
 	public int getId() {

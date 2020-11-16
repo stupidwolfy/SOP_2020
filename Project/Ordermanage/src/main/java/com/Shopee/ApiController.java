@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController {
 
-	@GetMapping(value = "/order/{orderid}", produces = "application/json")
+	@GetMapping(value = "/order/{id}", produces = "application/json")
 	public Cart OrderApiGet(@PathVariable int id) {
 		
 		//Dummy data
