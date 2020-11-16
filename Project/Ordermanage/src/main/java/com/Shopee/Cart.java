@@ -9,9 +9,9 @@ public class Cart {
 	private int user_id;
 	private Date date;
 	private List<Product> product;
-	private List<Promotion> promotion;
+	private Promotion promotion;
 	
-	public Cart(int id, int user_id, Date date, List<Product> product, List<Promotion> promotion) {
+	public Cart(int id, int user_id, Date date, List<Product> product, Promotion promotion) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
@@ -65,21 +65,13 @@ public class Cart {
 		this.product.addAll(Arrays.asList(args));
 	}
 
-	public List<Promotion> getPromotion() {
+	public Promotion getPromotion() {
 		return promotion;
 	}
 
-	public void setPromotion(List<Promotion> promotion) {
+	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
-	
-	public void addPromotion(Promotion newpromotion) {
-		this.promotion.add(newpromotion);
-	}
-	
-	public void addPromotion(Promotion ...args) {
-		this.promotion.addAll(Arrays.asList(args));
-	}
-	
+
 
 }

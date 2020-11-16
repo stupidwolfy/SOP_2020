@@ -1,7 +1,6 @@
 package com.Shopee;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,14 +20,13 @@ public class ApiController {
 		// model.addAttribute("person",person);
 		Product product1 = new Product(12, "Spoon", "https://www.google.com/spoon", 30, 150, 5, 5);
 		Product product2 = new Product(14, "Table", "https://www.google.com/table", 200, 2, 2, 7);
-		Promotion promo1 = new Promotion(5);
-		Promotion promo2 = new Promotion(2);
+		Promotion promo = new Promotion(5);
 		
 		Cart cart = new Cart(id);
 		cart.setUser_id(1234);
 		cart.setDatenow();
 		cart.addProduct(product1, product2);
-		cart.addPromotion(promo1,promo2);
+		cart.setPromotion(promo);
 		
 		return cart;
 	}
