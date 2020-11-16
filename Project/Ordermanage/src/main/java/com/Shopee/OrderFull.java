@@ -1,12 +1,16 @@
 package com.Shopee;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class OrderFull {
 	private int id;
 	private String name;
 	private String address;
-	private Order order;
+	private List<Order> orderPool;
 	private String shipping;
-	private int promotion;
+	private String promotion;
 	private String payment;
 	private int payShipping;
 	private int totalPrice;
@@ -14,15 +18,16 @@ public class OrderFull {
 	public OrderFull(int id) {
 		super();
 		this.id = id;
+		this.orderPool = new ArrayList<Order>();
 	}
 
-	public OrderFull(int id, String name, String address, Order order, String shipping, int promotion, String payment,
-			int payShipping, int totalPrice) {
+	public OrderFull(int id, String name, String address, List<Order> orderPool, String shipping, String promotion,
+			String payment, int payShipping, int totalPrice) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.order = order;
+		this.orderPool = orderPool;
 		this.shipping = shipping;
 		this.promotion = promotion;
 		this.payment = payment;
@@ -50,12 +55,20 @@ public class OrderFull {
 		this.address = address;
 	}
 
-	public Order getOrder() {
-		return order;
+	public List<Order> getOrderPool() {
+		return orderPool;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderPool(List<Order> orderPool) {
+		this.orderPool = orderPool;
+	}
+
+	public void addOrder(Order newOrder) {
+		this.orderPool.add(newOrder);
+	}
+
+	public void addOrder(Order... args) {
+		this.orderPool.addAll(Arrays.asList(args));
 	}
 
 	public String getShipping() {
@@ -66,11 +79,11 @@ public class OrderFull {
 		this.shipping = shipping;
 	}
 
-	public int getPromotion() {
+	public String getPromotion() {
 		return promotion;
 	}
 
-	public void setPromotion(int promotion) {
+	public void setPromotion(String promotion) {
 		this.promotion = promotion;
 	}
 

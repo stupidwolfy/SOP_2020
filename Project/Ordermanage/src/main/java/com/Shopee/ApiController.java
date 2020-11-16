@@ -12,6 +12,8 @@ public class ApiController {
 
 	@GetMapping(value = "/order/{orderid}", produces = "application/json")
 	public Order OrderApiGet(@PathVariable int orderid) {
+		
+		//Dummy data
 		Order order = new Order(5);
 		order.addShop("shop01");
 
@@ -21,13 +23,57 @@ public class ApiController {
 	}
 
 	@PostMapping(value = "/order/{orderid}", consumes = "application/json", produces = "application/json")
-	public Order PrderApiPost(@PathVariable int orderid, @RequestBody Order order) {
+	public Order OrderApiPost(@PathVariable int orderid, @RequestBody Order order) {
+		
+		//Dummy data
 		order.addShop("shop555");
 		order.setDatenow();
 
 		// model.addAttribute("hello",hello);
 		// model.addAttribute("person",person);
 		return order;
+	}
+	
+	
+	@GetMapping(value = "/order/cart/{cartid}", produces = "application/json")
+	public OrderFull OrderFullApiGet(@PathVariable int cartid) {
+		
+		//Dummy data
+		Order order = new Order(5);
+		order.addShop("shop06","shop05");
+		Order order2 = new Order(6);
+		order2.addShop("shop01","shop02");
+		
+		OrderFull orderfull = new OrderFull(cartid);
+		orderfull.setAddress("1/2 zzzzzz somewhere Thailand 123425");
+		orderfull.addOrder(order,order2);
+		orderfull.setName("zzzzzzz123");
+		orderfull.setPayment("Some Payment");
+		orderfull.setShipping("Ship to abcd");
+		orderfull.setTotalPrice(4999);
+		orderfull.setPayShipping(123);
+		orderfull.setPromotion("promocode555");
+
+		// model.addAttribute("hello",hello);
+		// model.addAttribute("person",person);
+		return orderfull;
+	}
+	
+	@PostMapping(value = "/order/cart/{cartid}", consumes = "application/json", produces = "application/json")
+	public OrderFull OrderFullApiPost(@PathVariable int cartid, @RequestBody OrderFull orderfull) {
+		
+		//Dummy data
+		Order order = new Order(999);
+		order.addShop("shop44","shop55");
+		Order order2 = new Order(123);
+		order2.addShop("shop12","shop21");
+		
+		orderfull.addOrder(order,order2);
+
+
+		// model.addAttribute("hello",hello);
+		// model.addAttribute("person",person);
+		return orderfull;
 	}
 
 }
