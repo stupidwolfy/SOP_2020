@@ -35,7 +35,7 @@ public class ApiController {
 	}
 	
 	
-	@GetMapping(value = "/order/cart/{cartid}", produces = "application/json")
+	@GetMapping(value = "/cart/{cartid}", produces = "application/json")
 	public OrderFull OrderFullApiGet(@PathVariable int cartid) {
 		
 		//Dummy data
@@ -59,7 +59,7 @@ public class ApiController {
 		return orderfull;
 	}
 	
-	@PostMapping(value = "/order/cart/{cartid}", consumes = "application/json", produces = "application/json")
+	@PostMapping(value = "/cart/{cartid}", consumes = "application/json", produces = "application/json")
 	public OrderFull OrderFullApiPost(@PathVariable int cartid, @RequestBody OrderFull orderfull) {
 		
 		//Dummy data
