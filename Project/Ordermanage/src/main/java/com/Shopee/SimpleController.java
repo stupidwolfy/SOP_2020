@@ -14,13 +14,13 @@ public class SimpleController {
 		return "home";
 	}
 	
-	@GetMapping("/cart")
-	public String cart() {
-		return "index";
-	}
+	//@GetMapping("/cart")
+	//public String cart() {
+	//	return "index";
+	//}
 	
 	@GetMapping("/order")
 	public String order() {
-		return "index2";
+		return "index";
 	}
 }

@@ -16,6 +16,7 @@ public class CartService {
 	public static final String COL_NAME = "carts";
 
 	public String saveCart(Cart cart) throws InterruptedException, ExecutionException {
+		cart.setDatenow();
 		Firestore dbFirestore = FirestoreClient.getFirestore();
 		ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(Integer.toString(cart.getId()))
 				.set(cart);
@@ -42,6 +43,12 @@ public class CartService {
 	public String updateCart(Cart cart) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(Integer.toString(cart.getId())).set(cart);
+        return collectionsApiFuture.get().getUpdateTime().toString();
+    }
+	
+	public String PatchCart(int id, String fieldPath, Object value) throws InterruptedException, ExecutionException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(Integer.toString(id)).update(fieldPath, value);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 	

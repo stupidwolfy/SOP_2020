@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,49 +45,44 @@ public class ApiController {
 	 * // model.addAttribute("hello",hello); // model.addAttribute("person",person);
 	 * return order; }
 	 */
-	
+
 	@PutMapping(value = "/order/", consumes = "application/json")
-	public String updateCart(@RequestBody Cart cart) throws InterruptedException, ExecutionException {
+	public String updateAllCart(@RequestBody Cart cart) throws InterruptedException, ExecutionException {
 		return cartService.updateCart(cart);
 	}
-	
+
+	@PatchMapping(value = "/order/addProduct/{id}", consumes = "application/json", produces = "application/json")
+	public String updateCart(@PathVariable int id, @RequestBody Product newproduct)
+			throws InterruptedException, ExecutionException {
+		// return cartService.PatchCart(id, "product", fieldvalue);
+		Cart cart = cartService.getCart(id);
+		if (cart == null) {
+			return "Not Found";
+		}
+		cart.addProduct(newproduct);
+		cartService.saveCart(cart);
+		
+		return "Added";
+	}
+
 	@DeleteMapping(value = "/order/{id}", produces = "application/json")
-	public String  deleteCart(@PathVariable int id) throws InterruptedException, ExecutionException {
+	public String deleteCart(@PathVariable int id) throws InterruptedException, ExecutionException {
 		return cartService.deleteCart(id);
 	}
-	
 
-	/*
-	 * @GetMapping(value = "/cart/{cartid}", produces = "application/json") public
-	 * OrderFull OrderFullApiGet(@PathVariable int cartid) {
-	 * 
-	 * // Dummy data Order order = new Order(5); order.addShop("shop06", "shop05");
-	 * Order order2 = new Order(6); order2.addShop("shop01", "shop02");
-	 * 
-	 * OrderFull orderfull = new OrderFull(cartid);
-	 * orderfull.setAddress("1/2 zzzzzz somewhere Thailand 123425");
-	 * orderfull.addOrder(order, order2); orderfull.setName("zzzzzzz123");
-	 * orderfull.setPayment("Some Payment"); orderfull.setShipping("Ship to abcd");
-	 * orderfull.setTotalPrice(4999); orderfull.setPayShipping(123);
-	 * orderfull.setPromotion("promocode555");
-	 * 
-	 * // model.addAttribute("hello",hello); // model.addAttribute("person",person);
-	 * return orderfull; }
-	 */
+	@GetMapping(value = "/dummy/product/{id}", produces = "application/json")
+	public DummyProdcut getDummyCart(@PathVariable int id) throws InterruptedException, ExecutionException {
+		switch (id) {
+		case 1:
+			return new DummyProdcut(1, "product1", "abcd", "abcd", "zzzz1.jpg", 123, 100, 5, 234);
+		case 2:
+			return new DummyProdcut(2, "product2", "abcd", "abcd", "zzz2.jpg", 321, 12, 1, 234);
+		case 3:
+			return new DummyProdcut(3, "product3", "abcd", "abcd", "zzz3.jpg", 150, 200, 2, 555);
 
-	/*
-	 * @PostMapping(value = "/cart/{cartid}", consumes = "application/json",
-	 * produces = "application/json") public OrderFull
-	 * OrderFullApiPost(@PathVariable int cartid, @RequestBody OrderFull orderfull)
-	 * {
-	 * 
-	 * // Dummy data Order order = new Order(999); order.addShop("shop44",
-	 * "shop55"); Order order2 = new Order(123); order2.addShop("shop12", "shop21");
-	 * 
-	 * orderfull.addOrder(order, order2);
-	 * 
-	 * // model.addAttribute("hello",hello); // model.addAttribute("person",person);
-	 * return orderfull; }
-	 */
+		default:
+			return new DummyProdcut(3, "abcd", "abcd", "abcd", "abc.jpg", 150, 200, 2, 555);
+		}
+	}
 
 }

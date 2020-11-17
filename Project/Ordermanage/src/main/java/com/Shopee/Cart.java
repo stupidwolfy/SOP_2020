@@ -10,12 +10,12 @@ public class Cart {
 	private int user_id;
 	private Date date;
 	private List<Product> product;
-	private Promotion promotion;
+	private String promotion;
 
 	public Cart() {
 	}
 
-	public Cart(int id, int user_id, Date date, List<Product> product, Promotion promotion) {
+	public Cart(int id, int user_id, Date date, List<Product> product, String promotion) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
@@ -58,23 +58,29 @@ public class Cart {
 		return product;
 	}
 
-	public void setProduct(List<Product> product) {
-		this.product = product;
+	public void addProduct(Product newproduct) {
+		// If product already in Cart
+		if (product.stream().anyMatch(p -> p.getId() == newproduct.getId())) {
+			product.stream().filter(o -> o.getId() == newproduct.getId()).findFirst().orElse(null).addAmount(newproduct.getAmount());
+			
+		} else {
+			this.product.add(newproduct);
+		}
 	}
 
-	public void addProduct(Product product) {
-		this.product.add(product);
+	public void setProduct(List<Product> product) {
+		this.product = product;
 	}
 
 	public void addProduct(Product... args) {
 		this.product.addAll(Arrays.asList(args));
 	}
 
-	public Promotion getPromotion() {
+	public String getPromotion() {
 		return promotion;
 	}
 
-	public void setPromotion(Promotion promotion) {
+	public void setPromotion(String promotion) {
 		this.promotion = promotion;
 	}
 
