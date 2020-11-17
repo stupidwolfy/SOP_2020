@@ -61,10 +61,37 @@ public class Cart {
 	public void addProduct(Product newproduct) {
 		// If product already in Cart
 		if (product.stream().anyMatch(p -> p.getId() == newproduct.getId())) {
-			product.stream().filter(o -> o.getId() == newproduct.getId()).findFirst().orElse(null).addAmount(newproduct.getAmount());
-			
+			product.stream().filter(o -> o.getId() == newproduct.getId()).findFirst().orElse(null)
+					.addAmount(newproduct.getAmount());
+
 		} else {
 			this.product.add(newproduct);
+		}
+	}
+
+	public String replaceProduct(Product newproduct) {
+		// If product already in Cart
+		if (product.stream().anyMatch(p -> p.getId() == newproduct.getId())) {
+			int index = product
+					.indexOf(product.stream().filter(o -> o.getId() == newproduct.getId()).findFirst().orElse(null));
+			product.set(index, newproduct);
+			return "Product replaced";
+
+		} else {
+			return "Product not in cart";
+		}
+	}
+
+	public String removeProduct(int productid) {
+		// If product already in Cart
+		if (product.stream().anyMatch(p -> p.getId() == productid)) {
+			int index = product
+					.indexOf(product.stream().filter(o -> o.getId() == productid).findFirst().orElse(null));
+			product.remove(index);
+			return "Product removed";
+
+		} else {
+			return "Product not found";
 		}
 	}
 

@@ -46,28 +46,48 @@ public class ApiController {
 	 * return order; }
 	 */
 
-	@PutMapping(value = "/order/", consumes = "application/json")
-	public String updateAllCart(@RequestBody Cart cart) throws InterruptedException, ExecutionException {
-		return cartService.updateCart(cart);
-	}
-
-	@PatchMapping(value = "/order/addProduct/{id}", consumes = "application/json", produces = "application/json")
-	public String updateCart(@PathVariable int id, @RequestBody Product newproduct)
+	@PostMapping(value = "/order/product/{orderid}", consumes = "application/json", produces = "application/json")
+	// Add product to cart
+	public String addProduct(@PathVariable int orderid, @RequestBody Product newproduct)
 			throws InterruptedException, ExecutionException {
-		// return cartService.PatchCart(id, "product", fieldvalue);
-		Cart cart = cartService.getCart(id);
+		Cart cart = cartService.getCart(orderid);
 		if (cart == null) {
 			return "Not Found";
 		}
 		cart.addProduct(newproduct);
 		cartService.saveCart(cart);
-		
+
 		return "Added";
 	}
 
-	@DeleteMapping(value = "/order/{id}", produces = "application/json")
-	public String deleteCart(@PathVariable int id) throws InterruptedException, ExecutionException {
-		return cartService.deleteCart(id);
+	@PatchMapping(value = "/order/product/{orderid}", consumes = "application/json", produces = "application/json")
+	// Update product in cart
+	public String updateProduct(@PathVariable int orderid, @RequestBody Product newproduct)
+			throws InterruptedException, ExecutionException {
+		Cart cart = cartService.getCart(orderid);
+		if (cart == null) {
+			return "Not Found";
+		}
+		String result = cart.replaceProduct(newproduct);
+		if (result == "Product replaced") {
+			cartService.saveCart(cart);
+		}
+
+		return result;
+	}
+
+	@DeleteMapping(value = "/order/product/{orderid}/{productid}", produces = "application/json")
+	public String deleteCart(@PathVariable int orderid, @PathVariable int productid)
+			throws InterruptedException, ExecutionException {
+		Cart cart = cartService.getCart(orderid);
+		if (cart == null) {
+			return "Not Found";
+		}
+		String result = cart.removeProduct(productid);
+		if (result == "Product removed") {
+			cartService.saveCart(cart);
+		}
+		return result;
 	}
 
 	@GetMapping(value = "/dummy/product/{id}", produces = "application/json")
