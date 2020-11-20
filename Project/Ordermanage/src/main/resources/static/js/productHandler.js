@@ -7,7 +7,11 @@ function getOrder(orderid) {
             //console.log(response.data);
             orderdata = response.data;
             orderdata.product.forEach(function(product, index, array) {
-                getProduct(product.id, index);
+                if (index === orderdata.product.length - 1) {
+                    getProduct(product.id, index, true);
+                } else {
+                    getProduct(product.id, index);
+                }
             });
         })
         .catch(function(error) {
@@ -15,17 +19,22 @@ function getOrder(orderid) {
             console.log(error);
         })
         .then(function() {
-            console.log(orderdata);
+            //console.log(orderdata);
             //cardGenerator(shopName, productlist);
         });
 }
 
-function getProduct(ptoductid, index) {
+function getProduct(ptoductid, index, islast = false) {
     axios.get('/dummy/product/' + ptoductid)
         .then(function(response) {
             // handle success
             //console.log(response.data);
             orderdata.product[index] = {...orderdata.product[index], ...response.data };
+            if (islast) {
+                console.log("last product loaded");
+                cardGenerator("1155", orderdata.product);
+                console.log(orderdata.product);
+            }
         })
         .catch(function(error) {
             // handle error
@@ -141,6 +150,7 @@ function cardGenerator(shopName, productlist) {
         let thbodyimg = document.createElement("th");
         thheadaction.setAttribute("scope", "row");
         let img = document.createElement("img");
+        img.classList.add("img-thumbnail", "img-fluid", "w-25");
         img.src = product.imageUrl;
         thbodyimg.append(img);
 
