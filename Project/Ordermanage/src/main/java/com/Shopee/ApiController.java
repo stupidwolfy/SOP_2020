@@ -94,14 +94,14 @@ public class ApiController {
 	public DummyProdcut getDummyProduct(@PathVariable int id) throws InterruptedException, ExecutionException {
 		switch (id) {
 		case 1:
-			return new DummyProdcut(1, "product1", "abcd", "abcd", "https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif", 123, 100, 5, 234);
+			return new DummyProdcut(1, "product1", "abcd", "abcd", "https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif", 123, 100, 5, 11);
 		case 2:
-			return new DummyProdcut(2, "product2", "abcd", "abcd", "https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif", 321, 12, 1, 234);
+			return new DummyProdcut(2, "product2", "abcd", "abcd", "https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif", 321, 12, 1, 11);
 		case 3:
-			return new DummyProdcut(3, "product3", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 555);
+			return new DummyProdcut(3, "product3", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 22);
 
 		default:
-			return new DummyProdcut(3, "abcd", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 555);
+			return new DummyProdcut(3, "abcd", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 22);
 		}
 	}
 	

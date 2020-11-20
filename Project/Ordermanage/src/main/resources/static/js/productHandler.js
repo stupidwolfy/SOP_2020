@@ -1,5 +1,7 @@
 let orderdata;
-let groupedproduct;
+//let groupedproduct;
+
+getOrder(5);
 
 function getOrder(orderid) {
     axios.get('/order/' + orderid)
@@ -25,6 +27,23 @@ function getOrder(orderid) {
         });
 }
 
+function getShop(shopid, order, islast = false) {
+    axios.get('/dummy/shop/' + shopid)
+        .then(function(response) {
+            // handle success
+            //console.log(response.data);
+            order.shop[shopid] = { product: {...order.shop[shopid] }, ...response.data };
+            cardGenerator(order.shop[shopid]);
+        })
+        .catch(function(error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function() {
+            // always executed
+        });
+}
+
 function getProduct(ptoductid, index, islast = false) {
     axios.get('/dummy/product/' + ptoductid)
         .then(function(response) {
@@ -33,9 +52,10 @@ function getProduct(ptoductid, index, islast = false) {
             orderdata.product[index] = {...orderdata.product[index], ...response.data };
             if (islast) {
                 console.log("last product loaded");
-                cardGenerator("1155", orderdata.product);
-                console.log(orderdata.product);
+                //cardGenerator("1155", orderdata.product);
+                //console.log(orderdata.product);
                 shopSorter(orderdata);
+                shopRender(orderdata);
             }
         })
         .catch(function(error) {
@@ -47,17 +67,25 @@ function getProduct(ptoductid, index, islast = false) {
         });
 }
 
-getOrder(5);
-
 function shopSorter(order) {
-    groupedproduct = _.groupBy(order.product, 'shopId');
+    orderdata.shop = _.groupBy(order.product, 'shopId');
 }
 
 function removeProduct(target) {
     target.parentNode.parentNode.parentNode.removeChild(target.parentNode.parentNode);
 }
 
-function cardGenerator(shopName, productlist) {
+function shopRender(order) {
+    for (const shop in order.shop) {
+        getShop(shop.toString(), order);
+        //cardGenerator(shop, order.shop[shop]);
+    }
+}
+
+function cardGenerator(shoppool) {
+    let shopName = shoppool.name;
+    let productlist = shoppool.product;
+
     let box = document.querySelector("#bigblock");
 
     let shopdiv = document.createElement("div");
@@ -107,29 +135,30 @@ function cardGenerator(shopName, productlist) {
 
     let tbody = document.createElement("tbody");
 
-    productlist.forEach(product => {
+    for (product in shoppool.product) {
+
         let trbody = document.createElement("tr");
 
         let thbodyimg = document.createElement("th");
         thheadaction.setAttribute("scope", "row");
         let img = document.createElement("img");
         img.classList.add("img-thumbnail", "img-fluid", "w-25");
-        img.src = product.imageUrl;
+        img.src = productlist[product].imageUrl;
         thbodyimg.append(img);
 
         let tdbodyname = document.createElement("td");
-        tdbodyname.innerText = product.name;
+        tdbodyname.innerText = productlist[product].name;
         let tdbodyprice = document.createElement("td");
-        tdbodyprice.innerText = product.price;
+        tdbodyprice.innerText = productlist[product].price;
         let tdbodyamount = document.createElement("td");
         let tdbodyamountinput = document.createElement("input");
         tdbodyamountinput.setAttribute("class", "form-control col-md-5 center");
         tdbodyamountinput.setAttribute("type", "text");
-        tdbodyamountinput.value = product.amount;
+        tdbodyamountinput.value = productlist[product].amount;
         tdbodyamount.append(tdbodyamountinput);
 
         let tdbodytotal = document.createElement("td");
-        tdbodytotal.innerText = product.total;
+        tdbodytotal.innerText = productlist[product].total;
         let tdbodyaction = document.createElement("td");
         let deletebutton = document.createElement("button");
         deletebutton.setAttribute("onclick", "removeProduct(this);");
@@ -147,7 +176,7 @@ function cardGenerator(shopName, productlist) {
         trbody.append(tdbodyaction);
 
         tbody.append(trbody);
-    });
+    }
 
 
     trhead.append(thheadimg);
