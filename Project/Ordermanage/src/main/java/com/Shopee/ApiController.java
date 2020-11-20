@@ -91,7 +91,7 @@ public class ApiController {
 	}
 
 	@GetMapping(value = "/dummy/product/{id}", produces = "application/json")
-	public DummyProdcut getDummyCart(@PathVariable int id) throws InterruptedException, ExecutionException {
+	public DummyProdcut getDummyProduct(@PathVariable int id) throws InterruptedException, ExecutionException {
 		switch (id) {
 		case 1:
 			return new DummyProdcut(1, "product1", "abcd", "abcd", "https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif", 123, 100, 5, 234);
@@ -102,6 +102,21 @@ public class ApiController {
 
 		default:
 			return new DummyProdcut(3, "abcd", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 555);
+		}
+	}
+	
+	@GetMapping(value = "/dummy/shop/{id}", produces = "application/json")
+	public DummyShop getDummyShop(@PathVariable int id) throws InterruptedException, ExecutionException {
+		switch (id) {
+		case 11:
+			return new DummyShop(11, 1, "aaaa.png", "Too shop", "Sell good thing", "dunno", 112, 0.5f);
+		case 22:
+			return new DummyShop(22, 2, "bbbb.png", "Pom shop", "Sell not buy", "dunno too", 44, 2.5f);
+		case 33:
+			return new DummyShop(33, 3, "ccccc.png", "O shop", "Sell nothing bad", "still dunno", 12, 4.5f);
+
+		default:
+			return new DummyShop(33, 3, "ccccc.png", "O shop", "Sell nothing bad", "still dunno", 12, 4.5f);
 		}
 	}
 

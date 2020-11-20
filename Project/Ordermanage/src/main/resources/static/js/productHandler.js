@@ -1,4 +1,5 @@
 let orderdata;
+let groupedproduct;
 
 function getOrder(orderid) {
     axios.get('/order/' + orderid)
@@ -34,6 +35,7 @@ function getProduct(ptoductid, index, islast = false) {
                 console.log("last product loaded");
                 cardGenerator("1155", orderdata.product);
                 console.log(orderdata.product);
+                shopSorter(orderdata);
             }
         })
         .catch(function(error) {
@@ -47,52 +49,13 @@ function getProduct(ptoductid, index, islast = false) {
 
 getOrder(5);
 
+function shopSorter(order) {
+    groupedproduct = _.groupBy(order.product, 'shopId');
+}
+
 function removeProduct(target) {
     target.parentNode.parentNode.parentNode.removeChild(target.parentNode.parentNode);
 }
-
-//<div id="block1" class="card">
-//        <div class="card-header">
-//            ร้าน test1
-//        </div>
-//        <div class="card-body">
-//            <blockquote class="blockquote mb-0">
-//                <table class="table" id="table1">
-//                    <thead>
-//                        <form>
-//                            <tr>
-//                                <th scope="col"><input type="checkbox"></th>
-//                                <th scope="col">รูปภาพ</th>
-//                                <th scope="col">สินค้า</th>
-//                                <th scope="col">ราคาต่อชิ้น</th>
-//                                <th scope="col">จำนวน</th>
-//                                <th scope="col">ราคารวม</th>
-//                                <th scope="col">แอคชั่น</th>
-//                            </tr>
-//                    </thead>
-//                    <tbody>
-//                        <tr>
-//                            <th scope="row"><input type="checkbox"></th>
-//                            <td>Mark</td>
-//                            <td>(ต้องสั่ง3ใบเท่านั้นครับ) กล่องรองเท้ารักษ์โลกอเนกประสงค์ สีน้ำตาลคละสี</td>
-//                            <td>฿39</td>
-//                            <td><input class="form-control col-md-4" type="text" placeholder="จำนวน"></td>
-//                            <td>฿39</td>
-//                            <td>
-//                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-//                                    <path
-//                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-//                                    <path fill-rule="evenodd"
-//                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-//                                </svg> ลบสินค้า
-//                            </td>
-//                        </tr>
-//                        </form>
-//                    </tbody>
-//                </table>
-//            </blockquote>
-//        </div>
-//    </div>
 
 function cardGenerator(shopName, productlist) {
     let box = document.querySelector("#bigblock");
@@ -204,6 +167,7 @@ function cardGenerator(shopName, productlist) {
     shopdiv.append(bodydiv);
     box.insertBefore(shopdiv, box.lastElementChild);
 }
+
 
 //updateAmount(5);
 //cardGenerator("shoptesttttt");
