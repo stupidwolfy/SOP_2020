@@ -72,8 +72,17 @@ function shopSorter(order) {
     orderdata.shop = _.groupBy(order.product, 'shopId');
 }
 
-function removeProduct(target) {
+function removeProduct(target, productId) {
     target.parentNode.parentNode.parentNode.removeChild(target.parentNode.parentNode);
+    axios.delete('/order/product/' + orderId + '/' + productId)
+        .then(function(response) {})
+        .catch(function(error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function() {
+            // always executed
+        });
 }
 
 function editProduct(event, productId, price) {
@@ -190,7 +199,7 @@ function cardGenerator(shoppool) {
         tdbodytotal.innerText = productlist[product].price * productlist[product].amount;
         let tdbodyaction = document.createElement("td");
         let deletebutton = document.createElement("button");
-        deletebutton.setAttribute("onclick", "removeProduct(this);");
+        deletebutton.setAttribute("onclick", "removeProduct(this, " + productlist[product].id + ");");
         deletebutton.setAttribute("type", "button");
         deletebutton.setAttribute("class", "btn btn-danger");
         deletebutton.innerText = "ลบสินค้า";
