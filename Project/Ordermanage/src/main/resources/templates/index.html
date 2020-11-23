@@ -24,9 +24,25 @@
             <img class="logo" th:src="@{images/logo.png}" alt="logo"> | รถเข็น
         </a>
     </nav>
-
     <!--body-->
     <div id="bigblock" class="card">
+
+        <div class="card col-4 p-4 m-5" id="promoblock">
+            <div class="card-body">
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                        <label for="inputPassword6">Code</label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" class="form-control" id="inputPassword2" placeholder="Enter promo code">
+                    </div>
+                    <button class="btn btn-primary mb-2" type="button" onclick="promoCheck(document.querySelector('#inputPassword2').value)">Send</button>
+                    <div class="form-group mb-2 center">
+                        <label id="promoResult" class="text-center">Press send</label>
+                    </div>
+                </form>
+            </div>
+        </div>
         <a href="order/" id="btnsearch1" class="btn mb-2">ดำเนินการต่อ</a>
     </div>
 

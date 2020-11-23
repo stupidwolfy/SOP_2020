@@ -4,6 +4,41 @@ let orderId = 5;
 
 getOrder(orderId);
 
+function promoCheck(promocode) {
+    let resultField = $("#promoResult");
+    //alert(promocode);
+    resultField.text("Checking...");
+    axios.get('https://mhee-promotion.herokuapp.com/promotions/' + promocode)
+        .then(function(response) {
+            resultField.text(response.data.description);
+            if (response.data.description == "Valid code") {
+                addPromo(promocode);
+            }
+        })
+        .catch(function(error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function() {
+            //console.log(orderdata);
+            //cardGenerator(shopName, productlist);
+        });
+}
+
+function addPromo(promocode) {
+    axios.patch('/order/promotion/' + orderId + "/" + promocode)
+        .then(function(response) {
+
+        })
+        .catch(function(error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function() {
+            // always executed
+        });
+}
+
 function getOrder(orderid) {
     axios.get('/order/' + orderid)
         .then(function(response) {
@@ -121,6 +156,7 @@ function cardGenerator(shoppool) {
     let productlist = shoppool.product;
 
     let box = document.querySelector("#bigblock");
+    let promoblock = document.querySelector("#promoblock");
 
     let shopdiv = document.createElement("div");
     shopdiv.setAttribute("id", "block1");
@@ -185,6 +221,8 @@ function cardGenerator(shoppool) {
         let tdbodyprice = document.createElement("td");
         tdbodyprice.innerText = productlist[product].price;
         let tdbodyamount = document.createElement("td");
+
+
         let tdbodyamountinput = document.createElement("input");
         tdbodyamountinput.setAttribute("class", "form-control col-md-5 center");
         tdbodyamountinput.setAttribute("type", "text");
@@ -232,7 +270,7 @@ function cardGenerator(shoppool) {
     bodydiv.append(blockquote);
     shopdiv.append(headerdiv);
     shopdiv.append(bodydiv);
-    box.insertBefore(shopdiv, box.lastElementChild);
+    box.insertBefore(shopdiv, promoblock);
 }
 
 

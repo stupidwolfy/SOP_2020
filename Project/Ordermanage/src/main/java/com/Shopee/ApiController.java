@@ -74,6 +74,22 @@ public class ApiController {
 		}
 
 		return result;
+		
+	}
+	
+	@PatchMapping(value = "/order/promotion/{orderid}/{promocode}")
+	// Update product in cart
+	public String updatePromotion(@PathVariable int orderid, @PathVariable String promocode)
+			throws InterruptedException, ExecutionException {
+		Cart cart = cartService.getCart(orderid);
+		if (cart == null) {
+			return "Not Found";
+		}
+		cart.setPromotion(promocode);
+		cartService.saveCart(cart);
+
+		return "Pomotion added";
+		
 	}
 
 	@DeleteMapping(value = "/order/product/{orderid}/{productid}", produces = "application/json")
