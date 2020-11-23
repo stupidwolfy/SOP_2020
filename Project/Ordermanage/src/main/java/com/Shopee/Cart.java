@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cart {
 	private int id;
-	private int user_id;
+	private String user_id;
 	private Date date;
 	private List<Product> product;
 	private String promotion;
@@ -15,7 +15,7 @@ public class Cart {
 	public Cart() {
 	}
 
-	public Cart(int id, int user_id, Date date, List<Product> product, String promotion) {
+	public Cart(int id, String user_id, Date date, List<Product> product, String promotion) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
@@ -34,11 +34,11 @@ public class Cart {
 		return id;
 	}
 
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
@@ -93,6 +93,10 @@ public class Cart {
 		} else {
 			return "Product not found";
 		}
+	}
+	
+	public boolean checkUid(String uid) {
+		return this.user_id.equals(uid);
 	}
 
 	public void setProduct(List<Product> product) {

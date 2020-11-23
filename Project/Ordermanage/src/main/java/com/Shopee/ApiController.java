@@ -1,5 +1,6 @@
 package com.Shopee;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,11 @@ public class ApiController {
 	public Cart getCart(@PathVariable int id) throws InterruptedException, ExecutionException {
 		return cartService.getCart(id);
 	}
-	/*
-	 * public Cart OrderApiGet(@PathVariable int id) { //Dummy data Product product1
-	 * = new Product(12, "Spoon", "https://www.google.com/spoon", 30, 150, 5, 5);
-	 * Product product2 = new Product(14, "Table", "https://www.google.com/table",
-	 * 200, 2, 2, 7); Promotion promo = new Promotion(5);
-	 * 
-	 * Cart cart = new Cart(id); cart.setUser_id(1234); cart.setDatenow();
-	 * cart.addProduct(product1, product2); cart.setPromotion(promo);
-	 * 
-	 * return cart; }
-	 */
+
+	@GetMapping(value = "/order/user/{user_id}", produces = "application/json")
+	public List<Cart> getCartofUser(@PathVariable String user_id) throws InterruptedException, ExecutionException {
+		return cartService.getCartall(user_id);
+	}
 
 	@PostMapping(value = "/order/", consumes = "application/json")
 	public String craeteCart(@RequestBody Cart cart) throws InterruptedException, ExecutionException {
@@ -74,9 +69,9 @@ public class ApiController {
 		}
 
 		return result;
-		
+
 	}
-	
+
 	@PatchMapping(value = "/order/promotion/{orderid}/{promocode}")
 	// Update product in cart
 	public String updatePromotion(@PathVariable int orderid, @PathVariable String promocode)
@@ -89,7 +84,7 @@ public class ApiController {
 		cartService.saveCart(cart);
 
 		return "Pomotion added";
-		
+
 	}
 
 	@DeleteMapping(value = "/order/product/{orderid}/{productid}", produces = "application/json")
@@ -110,17 +105,21 @@ public class ApiController {
 	public DummyProdcut getDummyProduct(@PathVariable int id) throws InterruptedException, ExecutionException {
 		switch (id) {
 		case 1:
-			return new DummyProdcut(1, "product1", "abcd", "abcd", "https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif", 123, 100, 5, 11);
+			return new DummyProdcut(1, "product1", "abcd", "abcd",
+					"https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif", 123, 100, 5, 11);
 		case 2:
-			return new DummyProdcut(2, "product2", "abcd", "abcd", "https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif", 321, 12, 1, 11);
+			return new DummyProdcut(2, "product2", "abcd", "abcd",
+					"https://media.giphy.com/media/Nm8ZPAGOwZUQM/giphy.gif", 321, 12, 1, 11);
 		case 3:
-			return new DummyProdcut(3, "product3", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 22);
+			return new DummyProdcut(3, "product3", "abcd", "abcd",
+					"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 22);
 
 		default:
-			return new DummyProdcut(3, "abcd", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif", 150, 200, 2, 22);
+			return new DummyProdcut(3, "abcd", "abcd", "abcd", "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
+					150, 200, 2, 22);
 		}
 	}
-	
+
 	@GetMapping(value = "/dummy/shop/{id}", produces = "application/json")
 	public DummyShop getDummyShop(@PathVariable int id) throws InterruptedException, ExecutionException {
 		switch (id) {
