@@ -1,8 +1,12 @@
 let orderdata;
-let orderId = 5;
+
+var url = new URL(window.location.href);
+var idd = url.searchParams.get("id");
+
+let orderId = idd;
 //let groupedproduct;
 
-getOrder(orderId);
+orderId ? getOrder(orderId) : null;
 
 function promoCheck(promocode) {
     let resultField = $("#promoResult");
