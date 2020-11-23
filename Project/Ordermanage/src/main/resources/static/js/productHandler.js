@@ -1,7 +1,8 @@
 let orderdata;
+let orderId = 5;
 //let groupedproduct;
 
-getOrder(5);
+getOrder(orderId);
 
 function getOrder(orderid) {
     axios.get('/order/' + orderid)
@@ -24,23 +25,6 @@ function getOrder(orderid) {
         .then(function() {
             //console.log(orderdata);
             //cardGenerator(shopName, productlist);
-        });
-}
-
-function getShop(shopid, order, islast = false) {
-    axios.get('/dummy/shop/' + shopid)
-        .then(function(response) {
-            // handle success
-            //console.log(response.data);
-            order.shop[shopid] = { product: {...order.shop[shopid] }, ...response.data };
-            cardGenerator(order.shop[shopid]);
-        })
-        .catch(function(error) {
-            // handle error
-            console.log(error);
-        })
-        .then(function() {
-            // always executed
         });
 }
 
@@ -67,6 +51,23 @@ function getProduct(ptoductid, index, islast = false) {
         });
 }
 
+function getShop(shopid, order, islast = false) {
+    axios.get('/dummy/shop/' + shopid)
+        .then(function(response) {
+            // handle success
+            //console.log(response.data);
+            order.shop[shopid] = { product: {...order.shop[shopid] }, ...response.data };
+            cardGenerator(order.shop[shopid]);
+        })
+        .catch(function(error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function() {
+            // always executed
+        });
+}
+
 function shopSorter(order) {
     orderdata.shop = _.groupBy(order.product, 'shopId');
 }
@@ -75,9 +76,33 @@ function removeProduct(target) {
     target.parentNode.parentNode.parentNode.removeChild(target.parentNode.parentNode);
 }
 
+function editProduct(event, productId, price) {
+    //console.log(event);
+    if (event.key === 'Enter') {
+        event.target.parentNode.nextElementSibling.innerText = "Loading..";
+        //alert(orderId + ", " + productId + ": " + event.target.value);
+        axios.patch('/order/product/' + orderId, {
+                "id": productId,
+                "amount": event.target.value,
+                "total": price * event.target.value
+            })
+            .then(function(response) {
+                //console.log(event.target.parentNode.nextElementSibling.innerText);
+                event.target.parentNode.nextElementSibling.innerText = price * event.target.value;
+            })
+            .catch(function(error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function() {
+                // always executed
+            });
+    }
+}
+
 function shopRender(order) {
     for (const shop in order.shop) {
-        getShop(shop.toString(), order);
+        getShop(shop + "", order);
         //cardGenerator(shop, order.shop[shop]);
     }
 }
@@ -136,7 +161,7 @@ function cardGenerator(shoppool) {
     let tbody = document.createElement("tbody");
 
     for (product in shoppool.product) {
-
+        //console.log(productlist[product]);
         let trbody = document.createElement("tr");
 
         let thbodyimg = document.createElement("th");
@@ -154,11 +179,15 @@ function cardGenerator(shoppool) {
         let tdbodyamountinput = document.createElement("input");
         tdbodyamountinput.setAttribute("class", "form-control col-md-5 center");
         tdbodyamountinput.setAttribute("type", "text");
+        tdbodyamountinput.setAttribute("onkeypress", "editProduct(event, " + productlist[product].id + "," + productlist[product].price + ");");
+        //tdbodyamountinput.addEventListener("keypress", function(e) { editProduct(e, productlist[product].id, productlist[product].price); });
         tdbodyamountinput.value = productlist[product].amount;
+
         tdbodyamount.append(tdbodyamountinput);
 
         let tdbodytotal = document.createElement("td");
-        tdbodytotal.innerText = productlist[product].total;
+        //tdbodytotal.innerText = productlist[product].total;
+        tdbodytotal.innerText = productlist[product].price * productlist[product].amount;
         let tdbodyaction = document.createElement("td");
         let deletebutton = document.createElement("button");
         deletebutton.setAttribute("onclick", "removeProduct(this);");
