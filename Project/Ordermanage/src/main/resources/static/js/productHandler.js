@@ -48,6 +48,7 @@ function getOrder(orderid) {
         .then(function(response) {
             // handle success
             //console.log(response.data);
+            $("#btnsearch1").attr("href", "https://shopee2.herokuapp.com/detailorder/" + orderId);
             orderdata = response.data;
             orderdata.product.forEach(function(product, index, array) {
                 if (index === orderdata.product.length - 1) {
